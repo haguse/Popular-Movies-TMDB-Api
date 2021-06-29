@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SearchBar from "./SearchBar";
 import MovieList from "./MovieList";
 import axios from "axios";
+require("dotenv").config();
 
 class App extends Component {
   state = {
@@ -9,44 +10,13 @@ class App extends Component {
     searchQuery: "",
   };
 
-  // Get Request with Fetch Api
-  // async componentDidMount(){
-  //   const baseURL = "http://localhost:3005/movies";
-  //   const response = await fetch(baseURL);
-  //   const data = await response.json();
-
-  //   this.setState({movies : data})
-  // }
-
   async componentDidMount() {
-    const response = await axios.get("http://localhost:3005/movies");
-    this.setState({ movies: response.data });
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
+    );
+    console.log(response.data.results);
+    this.setState({ movies: response.data.results });
   }
-
-  deleteMovie = async (movie) => {
-
-    // Delete with using Fetch Api
-    // const baseURL = `http://localhost:3005/movies/${movie.id}`;
-    // fetch(baseURL, {
-    //   method: "DELETE",
-    // });
-
-    // Delete with using Axios
-    const baseURL = `http://localhost:3005/movies/${movie.id}`
-    axios.delete(baseURL);
-    
-
-
-    const newMovieList = this.state.movies.filter((m) => m.id !== movie.id);
-
-    // this.setState({
-    //   movies: newMovieList,
-    // });
-
-    this.setState((state) => ({
-      movies: newMovieList,
-    }));
-  };
 
   searchMovie = (e) => {
     this.setState({ searchQuery: e.target.value });
@@ -56,7 +26,7 @@ class App extends Component {
     //Show Searched Movies
     let filteredMovies = this.state.movies.filter((movie) => {
       return (
-        movie.name
+        movie.title
           .toLowerCase()
           .indexOf(this.state.searchQuery.toLowerCase()) !== -1
       );
@@ -69,7 +39,7 @@ class App extends Component {
             <SearchBar searchMovieProp={this.searchMovie} />
           </div>
         </div>
-        <MovieList movies={filteredMovies} deleteMovieProp={this.deleteMovie} />
+        <MovieList movies={filteredMovies} />
       </div>
     );
   }
