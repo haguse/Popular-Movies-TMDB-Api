@@ -1,5 +1,7 @@
 API_KEY is used as an environment variable so you will need the TMDB api key to run the project locally.
+
 You can view a live demo over at https://haguse.github.io/Popular-Movies-TMDB-Api/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
