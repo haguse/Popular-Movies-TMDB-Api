@@ -17,7 +17,7 @@ export default class MovieList extends Component {
                 className="card-img-top"
                 alt="Sample Movie"
                 src={`https://www.themoviedb.org/t/p/w220_and_h330_face/`.concat(
-                  movie.backdrop_path
+                  movie.poster_path
                 )}
               ></img>
               <div className="card-body">
