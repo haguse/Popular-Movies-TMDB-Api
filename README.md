@@ -1,8 +1,8 @@
-See the 20 most popular movies on the TMDB site. <br> <br>
-
-*API_KEY is used as an environment variable so you will need the TMDB api key to run the project locally.*
+See the 20 most popular movies on the TMDB site. <br> 
 
 You can view a live demo over at https://haguse.github.io/Popular-Movies-TMDB-Api/
+
+*API_KEY is used as an environment variable so you will need the TMDB api key to run the project locally.*
 
 # Getting Started with Create React App
 
